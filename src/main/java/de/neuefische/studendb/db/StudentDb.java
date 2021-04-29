@@ -3,6 +3,7 @@ package de.neuefische.studendb.db;
 import de.neuefische.studendb.model.Student;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class StudentDb {
 
@@ -28,5 +29,12 @@ public class StudentDb {
     public Student randomStudent() {
         int index = (int) Math.floor(Math.random() * students.size());
             return students.get(index);
+    }
+    public void add(Student student) {
+        students.add(student);
+    }
+
+    public void remove(Student student) {
+       students.remove(student);
     }
 }

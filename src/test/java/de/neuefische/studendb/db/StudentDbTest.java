@@ -79,4 +79,49 @@ class StudentDbTest {
                 + "Student{name='Franky', id='100'}\n";
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Adding Students")
+    public void testToAddStudent() {
+        // Given
+        ArrayList<Student> students = new ArrayList<>();
+        students.add(new Student("Jane", "42"));
+        students.add(new Student("Klaus", "13"));
+        students.add(new Student("Franky", "100"));
+
+        StudentDb studentDb = new StudentDb(students);
+
+        // When
+        students.add(new Student("TestStudent", "15"));
+        String actual = studentDb.toString();
+
+        // Then
+        String expected = "Student{name='Jane', id='42'}\n"
+                + "Student{name='Klaus', id='13'}\n"
+                + "Student{name='Franky', id='100'}\n"
+                + "Student{name='TestStudent', id='15'}\n";
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("Test to Remove Student")
+    public void testToRemoveStudent() {
+        // Given
+        ArrayList<Student> students = new ArrayList<>();
+        students.add(new Student("Jane", "42"));
+        students.add(new Student("Klaus", "13"));
+        students.add(new Student("Franky", "100"));
+        students.add(new Student("TestStudent", "15"));
+
+        StudentDb studentDb = new StudentDb(students);
+
+        // When
+        students.remove(new Student("TestStudent", "15"));
+        String actual = studentDb.toString();
+
+        // Then
+        String expected = "Student{name='Jane', id='42'}\n"
+                + "Student{name='Klaus', id='13'}\n"
+                + "Student{name='Franky', id='100'}\n";
+        assertEquals(expected, actual);
+    }
 }
