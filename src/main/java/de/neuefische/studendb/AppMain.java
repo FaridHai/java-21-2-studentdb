@@ -9,15 +9,22 @@ public class AppMain {
 
     public static void main(String[] args) {
         ArrayList<Student> students = new ArrayList<>();
-        students.add(new Student("Jane", "42"));
-        students.add(new Student("Klaus", "13"));
-        students.add(new Student("Franky", "100"));
-
         StudentDb studentDb = new StudentDb(students);
 
-        for(int i=0; i < 5; i++){
-            System.out.println(studentDb.randomStudent());
-        }
+        studentDb.add(new Student("Jane", "42"));
+        studentDb.add(new Student("Klaus", "13"));
+        studentDb.add(new Student("Franky", "100"));
+        studentDb.add(new Student("Franky", "100"));
+        studentDb.add(new Student("Franky", "100"));
+
+
+        studentDb.remove(new Student("Franky", "100"));
+
+//        for(int i=0; i < 5; i++){
+//            System.out.println(studentDb.randomStudent());
+//        }
+
+        System.out.println(studentDb.toString());
 
     }
 }

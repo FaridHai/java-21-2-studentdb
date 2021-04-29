@@ -35,6 +35,7 @@ public class StudentDb {
     }
 
     public void remove(Student student) {
-       students.remove(student);
+       while(students.remove(student)){
+       }
     }
 }
