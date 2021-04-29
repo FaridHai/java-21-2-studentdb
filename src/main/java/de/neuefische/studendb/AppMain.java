@@ -18,12 +18,15 @@ public class AppMain {
         studentDb.add(new Student("Franky", "100"));
 
 
-        studentDb.remove(new Student("Franky", "100"));
+//        studentDb.remove(new Student("Franky", "100"));
 
 //        for(int i=0; i < 5; i++){
 //            System.out.println(studentDb.randomStudent());
 //        }
 
+        System.out.println(studentDb.toString());
+        System.out.println(studentDb.findById("13")+ "\n");
+        studentDb.removeById("100");
         System.out.println(studentDb.toString());
 
     }

@@ -3,39 +3,51 @@ package de.neuefische.studendb.db;
 import de.neuefische.studendb.model.Student;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class StudentDb {
 
-    private ArrayList<Student> students = new ArrayList<>();
+    private ArrayList<Student> studentList = new ArrayList<>();
 
     public StudentDb(ArrayList<Student> students) {
-            this.students = students;
+            this.studentList = students;
         }
 
     public ArrayList<Student> list() {
-            return students;
+            return studentList;
         }
 
     @Override
     public String toString(){
         String result = "";
-        for (int i = 0; i < students.size(); i++) {
-            result += students.get(i) + "\n";
+        for (int i = 0; i < studentList.size(); i++) {
+            result += studentList.get(i) + "\n";
         }
         return result;
     }
 
     public Student randomStudent() {
-        int index = (int) Math.floor(Math.random() * students.size());
-            return students.get(index);
+        int index = (int) Math.floor(Math.random() * studentList.size());
+            return studentList.get(index);
     }
     public void add(Student student) {
-        students.add(student);
+        studentList.add(student);
     }
 
     public void remove(Student student) {
-       while(students.remove(student)){
+       while(studentList.remove(student)){
        }
+    }
+
+    public Student findById(String findById){
+        for(Student student : studentList){
+            if(student.getId() == findById){
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public void removeById(String idToRemove) {
+        remove(findById(idToRemove));
     }
 }

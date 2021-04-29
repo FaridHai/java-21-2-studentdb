@@ -124,4 +124,48 @@ class StudentDbTest {
                 + "Student{name='Franky', id='100'}\n";
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Find Student by ID")
+    void findById() {
+        //GIVEN
+        ArrayList<Student> students = new ArrayList<>();
+        StudentDb studentDb = new StudentDb(students);
+
+        studentDb.add(new Student("Jane", "42"));
+        studentDb.add(new Student("Klaus", "13"));
+        studentDb.add(new Student("Franky", "100"));
+        studentDb.add(new Student("TestStudent", "15"));
+        studentDb.add(new Student("TestStudent", "15"));
+
+        //THEN
+        Student actual = studentDb.findById("15");
+
+        //WHEN
+        Student expected = (new Student("TestStudent", "15"));
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Remove Student by ID")
+    void removeById() {
+        //GIVEN
+        ArrayList<Student> students = new ArrayList<>();
+        StudentDb studentDb = new StudentDb(students);
+
+        studentDb.add(new Student("Jane", "42"));
+        studentDb.add(new Student("Klaus", "13"));
+        studentDb.add(new Student("Franky", "100"));
+        studentDb.add(new Student("TestStudent", "15"));
+        studentDb.add(new Student("TestStudent", "15"));
+
+        //THEN
+        studentDb.removeById("15");
+        String actual = studentDb.toString();
+        //WHEN
+        String expected = "Student{name='Jane', id='42'}\n"
+                + "Student{name='Klaus', id='13'}\n"
+                + "Student{name='Franky', id='100'}\n";
+        assertEquals(expected, actual);
+    }
 }
