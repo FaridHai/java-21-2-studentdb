@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,7 +49,7 @@ class StudentDbTest {
         StudentDb studentDb = new StudentDb(students);
 
         // When
-        ArrayList<Student> actual = studentDb.list();
+        List<Student> actual = studentDb.list();
 
         // Then
         ArrayList<Student> expected = new ArrayList<>();

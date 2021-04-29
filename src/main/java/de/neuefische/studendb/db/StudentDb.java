@@ -3,6 +3,8 @@ package de.neuefische.studendb.db;
 import de.neuefische.studendb.model.Student;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class StudentDb {
 
@@ -12,8 +14,8 @@ public class StudentDb {
             this.studentList = students;
         }
 
-    public ArrayList<Student> list() {
-            return studentList;
+    public List<Student> list() {
+            return Collections.unmodifiableList(studentList);
         }
 
     @Override
