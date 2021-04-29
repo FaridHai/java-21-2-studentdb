@@ -2,54 +2,65 @@ package de.neuefische.studendb.db;
 
 import de.neuefische.studendb.model.Student;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class StudentDb {
 
-    private ArrayList<Student> studentList = new ArrayList<>();
+    private Map<String, Student> studentMap = new HashMap<>();
 
-    public StudentDb(ArrayList<Student> students) {
-            this.studentList = students;
+    public StudentDb(Student[] students) {
+        for (Student student : students) {
+            add(student);
         }
+    }
 
-    public List<Student> list() {
-            return Collections.unmodifiableList(studentList);
+    public Map<String, Student> list() {
+            return Collections.unmodifiableMap(studentMap);
         }
 
     @Override
     public String toString(){
-        String result = "";
-        for (int i = 0; i < studentList.size(); i++) {
-            result += studentList.get(i) + "\n";
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<String, Student> mapEntry : studentMap.entrySet()) {
+            result.append(mapEntry.getValue()).append("\n");
         }
-        return result;
+        return result.toString();
     }
 
-    public Student randomStudent() {
-        int index = (int) Math.floor(Math.random() * studentList.size());
-            return studentList.get(index);
+    /* ALTERNATIVLÖSUNG
+        @Override
+    public String toString() {
+        return "StudentDb{" +
+                "studentMap=" + studentMap +
+                '}';
     }
+    */
+
+    /*public Student randomStudent() {
+        //1. Keys bekommen und in ArrayList speichern
+        ArrayList<String> keysAsArray= new ArrayList<>(studentMap.keySet());
+        //2. Über die Größe vom Array eine zufällige Zahl suchen
+        int index = (int) Math.floor(Math.random() * keysAsArray.size());
+        //3. Key abspeichern
+        String key = keysAsArray.get(index).toString();
+        //4. Diesen Key nehmen und ausgeben
+        return studentMap.get(key);
+    }*/
+
     public void add(Student student) {
-        studentList.add(student);
+        studentMap.put(student.getId(), student);
     }
 
-    public void remove(Student student) {
-       while(studentList.remove(student)){
-       }
+    public void remove(String key) {
+       studentMap.remove(key);
+
     }
 
-    public Student findById(String findById){
-        for(Student student : studentList){
-            if(student.getId() == findById){
-                return student;
-            }
-        }
-        return null;
+    public Student findById(String id){
+        return studentMap.get(id);
     }
 
-    public void removeById(String idToRemove) {
+    /*public void removeById(String idToRemove) {
         remove(findById(idToRemove));
-    }
+    }*/
 }

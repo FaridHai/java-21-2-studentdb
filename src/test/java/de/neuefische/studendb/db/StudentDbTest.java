@@ -1,4 +1,4 @@
-package de.neuefische.studendb.db;
+/*package de.neuefische.studendb.db;
 
 import de.neuefische.studendb.model.Student;
 import org.junit.jupiter.api.DisplayName;
@@ -170,3 +170,5 @@ class StudentDbTest {
         assertEquals(expected, actual);
     }
 }
+
+*/
